@@ -16,10 +16,6 @@ public class StudentController {
     @Autowired
    private StudentService studentService;
 
-
-    public long tokenGenrator(){
-        return System.currentTimeMillis();
-    }
     @GetMapping("get")
     public String getData(){
         return "ashu";
@@ -36,6 +32,24 @@ public class StudentController {
         return student;
     }
 
+    @GetMapping("getAllStudentData")
+    public List<Student> getAllStudentData(){
+       return studentService.getAllStudentData();
+    }
 
+    @GetMapping("getById")
+    public Student getById(@RequestParam long studentId){
+        return studentService.getById(studentId);
+    }
+
+    @DeleteMapping("deleteById")
+    public void deleteById(@RequestParam long studentId){
+        studentService.deleteByid(studentId);
+    }
+
+    @PutMapping("updateStudentData")
+    public Student updateStudentDataById(@RequestBody Student student){
+       return studentService.updateStudentData(student);
+    }
 
 }

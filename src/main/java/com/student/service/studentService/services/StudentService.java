@@ -22,4 +22,20 @@ public class StudentService {
     public List<Student> saveAll(List<Student> students){
         return (List<Student>)studentRepository.saveAll(students);
     }
+
+    public List<Student> getAllStudentData() {
+        return studentRepository.findAll();
+    }
+
+    public Student getById(long studentId) {
+        return studentRepository.getById(studentId);
+    }
+
+    public void deleteByid(long studentId) {
+        studentRepository.deleteById(studentId);
+    }
+
+    public Student updateStudentData(Student student) {
+        return studentRepository.save(student);
+    }
 }

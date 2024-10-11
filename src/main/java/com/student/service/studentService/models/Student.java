@@ -1,4 +1,5 @@
 package com.student.service.studentService.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
@@ -29,18 +30,21 @@ public class Student {
         @Column(name = "USERNAME")
         private String username;
 
+    @JsonIgnore
+    private transient Object hibernateLazyInitializer;
+
         // Constructors, getters, and setters
 
         // Constructor with fields
-        public Student(String firstName, String lastName, String mobileNumber,
-                       String email, String password, String username) {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.mobileNumber = mobileNumber;
-            this.email = email;
-            this.password = password;
-            this.username = username;
-        }
+//        public Student(String firstName, String lastName, String mobileNumber,
+//                       String email, String password, String username) {
+//            this.firstName = firstName;
+//            this.lastName = lastName;
+//            this.mobileNumber = mobileNumber;
+//            this.email = email;
+//            this.password = password;
+//            this.username = username;
+//        }
 
     public Long getStudentId() {
         return studentId;
