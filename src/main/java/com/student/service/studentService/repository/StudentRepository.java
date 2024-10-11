@@ -11,5 +11,4 @@ import java.util.Optional;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
-    Optional<Student> getByUsername(String username);
 }

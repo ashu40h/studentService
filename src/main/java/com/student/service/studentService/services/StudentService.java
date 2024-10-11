@@ -22,8 +22,4 @@ public class StudentService {
     public List<Student> saveAll(List<Student> students){
         return (List<Student>)studentRepository.saveAll(students);
     }
-
-    public Optional<Student> getByUsername(String username) {
-        return studentRepository.getByUsername(username);
-    }
 }

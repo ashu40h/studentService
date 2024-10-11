@@ -36,11 +36,6 @@ public class StudentController {
         return student;
     }
 
-    @GetMapping("getbyusername")
-    public Optional<Student> getByUserName(@RequestParam String username){
-        return studentService.getByUsername(username);
-    }
-
 
 
 }
