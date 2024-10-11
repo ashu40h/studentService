@@ -2,18 +2,24 @@ package com.student.service.studentService.Controllers;
 
 import com.student.service.studentService.models.Student;
 import com.student.service.studentService.repository.StudentRepository;
+import com.student.service.studentService.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @RestController("/")
 public class StudentController {
 
     @Autowired
-    private StudentRepository studentRepository;
+   private StudentService studentService;
 
+
+    public long tokenGenrator(){
+        return System.currentTimeMillis();
+    }
     @GetMapping("get")
     public String getData(){
         return "ashu";
@@ -21,15 +27,20 @@ public class StudentController {
 
     @PostMapping("save")
     public Student saveData(@RequestBody Student student){
-        student.setFirstName("ashu");
-        student.setLastName("sharma");
-        student.setEmail("ashu@gmail.com");
-        student.setPassword("ashu@ashu");
-        student.setUsername("ashusharma");
-        student.setMobileNumber("8328833");
-
-        studentRepository.save(student);
+        studentService.save(student);
         return student;
     }
+    @PostMapping("saveAll")
+    public List<Student> saveAllData(@RequestBody List<Student> student){
+        studentService.saveAll(student);
+        return student;
+    }
+
+    @GetMapping("getbyusername")
+    public Optional<Student> getByUserName(@RequestParam String username){
+        return studentService.getByUsername(username);
+    }
+
+
 
 }
