@@ -1,12 +1,12 @@
 package com.student.service.studentService.services;
 
 import com.student.service.studentService.models.Student;
+import com.student.service.studentService.models.StudentLoginDTO;
 import com.student.service.studentService.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -37,5 +37,19 @@ public class StudentService {
 
     public Student updateStudentData(Student student) {
         return studentRepository.save(student);
+    }
+
+    public boolean findByUsername(StudentLoginDTO studentLoginDTO) {
+      
+        Student byUsername2 = studentRepository.findByUsername(studentLoginDTO.getUsername());
+        if(byUsername2!=null){
+            if(byUsername2.getUsername().equalsIgnoreCase(studentLoginDTO.getUsername()) &&
+            byUsername2.getPassword().equalsIgnoreCase(studentLoginDTO.getPassword())){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return false;
     }
 }

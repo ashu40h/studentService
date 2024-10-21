@@ -1,14 +1,11 @@
 package com.student.service.studentService.Controllers;
 
 import com.student.service.studentService.models.Student;
-import com.student.service.studentService.repository.StudentRepository;
+import com.student.service.studentService.models.StudentLoginDTO;
 import com.student.service.studentService.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RestController("/")
 public class StudentController {
@@ -50,6 +47,11 @@ public class StudentController {
     @PutMapping("updateStudentData")
     public Student updateStudentDataById(@RequestBody Student student){
        return studentService.updateStudentData(student);
+    }
+
+    @GetMapping("/login")
+    public boolean loginToStudentAccount(@RequestBody StudentLoginDTO studentLogin) {
+       return studentService.findByUsername(studentLogin);
     }
 
 }
